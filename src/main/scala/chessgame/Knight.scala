@@ -1,13 +1,14 @@
 package chessgame
 
-import chessgame.Team.Team
+import chessgame.Piece._
+import chessgame.Team._
 
-class Knight(team: Team, piecePosition: Int) extends Piece(team, piecePosition) {
+class Knight(team: Team.Team, piecePosition: Int) extends Piece(team, piecePosition) {
   val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-17, -15, -10, -6, 6, 10, 15, 17)
 
   override def calculateLegalMoves(board: Board): Set[Move] = {
     var candidateDestinationCoordinate: Int = piecePosition
-    val legalMoves: Set[Move] = Set()
+    var legalMoves: Set[Move] = Set()
 
     for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
       candidateDestinationCoordinate = piecePosition + currentCandidateOffset
@@ -20,13 +21,13 @@ class Knight(team: Team, piecePosition: Int) extends Piece(team, piecePosition) 
           val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
           if (!candidateDestinationTile.isTileOccupied) {
-            legalMoves + MajorMove(board, this, candidateDestinationCoordinate)
+            legalMoves += MajorMove(board, this, candidateDestinationCoordinate)
           } else {
             val pieceAtDestination: Piece = candidateDestinationTile.getPiece
             val pieceTeam: Team = pieceAtDestination.getPieceTeam
 
             if (team != pieceTeam) {
-              legalMoves + AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
+              legalMoves += AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
             }
           }
         }
@@ -51,4 +52,6 @@ class Knight(team: Team, piecePosition: Int) extends Piece(team, piecePosition) 
   def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
     Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17)
   }
+
+  override def toString: String = KNIGHT.toChar
 }
