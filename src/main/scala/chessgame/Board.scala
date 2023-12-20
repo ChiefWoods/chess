@@ -11,6 +11,8 @@ object Board {
   val SECOND_COLUMN: Array[Boolean] = initColumn(1)
   val SEVENTH_COLUMN: Array[Boolean] = initColumn(6)
   val EIGHTH_COLUMN: Array[Boolean] = initColumn(7)
+  val SECOND_ROW : Array[Boolean] = initRow(0)
+  val SEVENTH_ROW : Array[Boolean] = initRow(6)
 
   def initColumn(columnNumber: Int): Array[Boolean] = {
     val column: Array[Boolean] = new Array[Boolean](TILES_COUNT)
@@ -24,7 +26,20 @@ object Board {
     column
   }
 
-  def isValidTileCoordinate(coordinate: Int): Boolean = {
-    coordinate >= 0 && coordinate < Board.TILES_COUNT
+  def initRow(rowNumber: Int) : Array[Boolean] = {
+    val row : Array[Boolean] = new Array[Boolean](TILES_COUNT)
+
+    var currentNumber = rowNumber * TILES_PER_ROW
+
+    while (currentNumber < (rowNumber + 1) * TILES_PER_ROW) {
+      row(currentNumber) = true
+      currentNumber += 1
+    }
+
+    row
+  }
+
+  def isValidTileCoordinate(coordinate : Int) : Boolean = {
+    coordinate >= 0 && coordinate < TILES_COUNT
   }
 }
