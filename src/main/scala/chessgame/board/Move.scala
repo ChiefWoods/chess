@@ -41,11 +41,11 @@ abstract class Move(private val board: Board, private val movedPiece: Piece, pri
     result
   }
 
-  override def equals(obj: Any): Boolean = {
+  def equals(obj: Move): Boolean = {
     if (this == obj) return true
     if (obj == null || !obj.isInstanceOf[Move]) return false
 
-    val move: Move = obj.asInstanceOf[Move]
+    val move: Move = obj
 
     getDestinationCoordinate == move.getDestinationCoordinate &&
       getMovedPiece.equals(move.getMovedPiece)

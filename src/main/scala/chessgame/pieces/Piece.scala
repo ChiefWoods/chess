@@ -31,11 +31,11 @@ abstract class Piece(private val team: Team.Team, private val pieceType: Piece.P
     result
   }
 
-  override def equals(obj: Any): Boolean = {
+  def equals(obj: Piece): Boolean = {
     if (this == obj) return true
     if (obj == null || !obj.isInstanceOf[Piece]) return false
 
-    val piece: Piece = obj.asInstanceOf[Piece]
+    val piece: Piece = obj
 
     team == piece.getPieceTeam &&
       pieceType == piece.getPieceType &&
