@@ -1,9 +1,11 @@
-package chessgame
+package chessgame.pieces
 
-import chessgame.Piece._
+import chessgame.Team
 import chessgame.Team._
+import chessgame.board._
+import chessgame.pieces.Piece._
 
-class King(team: Team.Team, piecePosition: Int) extends Piece(team, piecePosition) {
+class King(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, KING, piecePosition) {
   val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
 
   override def calculateLegalMoves(board: Board): Set[Move] = {
@@ -18,13 +20,13 @@ class King(team: Team.Team, piecePosition: Int) extends Piece(team, piecePositio
           val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
           if (!candidateDestinationTile.isTileOccupied) {
-            legalMoves += MajorMove(board, this, candidateDestinationCoordinate)
+            legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
           } else {
             val pieceAtDestination: Piece = candidateDestinationTile.getPiece
             val pieceTeam: Team = pieceAtDestination.getPieceTeam
 
             if (team != pieceTeam) {
-              legalMoves += AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
+              legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
             }
           }
         }
@@ -32,6 +34,10 @@ class King(team: Team.Team, piecePosition: Int) extends Piece(team, piecePositio
     }
 
     legalMoves
+  }
+
+  override def movePiece(move: Move): King = {
+    new King(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
   }
 
   def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {

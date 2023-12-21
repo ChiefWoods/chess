@@ -1,14 +1,21 @@
-package chessgame
+package chessgame.board
 
+import chessgame.Team
 import chessgame.Team._
+import chessgame.pieces._
+import chessgame.players.{BlackPlayer, Player, WhitePlayer}
+
 import scala.collection.mutable
 
-case class Board(builder: Builder) {
+case class Board(private val builder: Builder) {
   val gameBoard: List[Tile] = Board.createGameBoard(builder)
   val whitePieces: Set[Piece] = calculateActivePieces(gameBoard, WHITE)
   val blackPieces: Set[Piece] = calculateActivePieces(gameBoard, BLACK)
   val whiteLegalMoves: Set[Move] = calculateLegalMoves(whitePieces)
   val blackLegalMoves: Set[Move] = calculateLegalMoves(blackPieces)
+  val whitePlayer: WhitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves)
+  val blackPlayer: BlackPlayer = new BlackPlayer(this, whiteLegalMoves, blackLegalMoves)
+  val currentPlayer: Player = builder.nextMoveMaker.choosePlayer(whitePlayer, blackPlayer)
 
   private def calculateActivePieces(gameBoard: List[Tile], team: Team.Team): Set[Piece] = {
     gameBoard.filter(_.isTileOccupied).map(_.getPiece).filter(_.getPieceTeam == team).toSet
@@ -27,6 +34,20 @@ case class Board(builder: Builder) {
 
   def getTile(coordinate: Int): Tile = {
     gameBoard(coordinate)
+  }
+
+  def getWhitePieces: Set[Piece] = whitePieces
+
+  def getBlackPieces: Set[Piece] = blackPieces
+
+  def getWhitePlayer: WhitePlayer = whitePlayer
+
+  def getBlackPlayer: BlackPlayer = blackPlayer
+
+  def getCurrentPlayer: Player = currentPlayer
+
+  def getAllLegalMoves: Set[Move] = {
+    whiteLegalMoves ++ blackLegalMoves
   }
 
   override def toString: String = {
@@ -151,5 +172,9 @@ class Builder() {
 
   def build: Board = {
     new Board(this)
+  }
+
+  def setEnPassantPawn(movedPawn: Pawn) = {
+
   }
 }
