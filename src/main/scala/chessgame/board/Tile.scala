@@ -1,11 +1,14 @@
-package chessgame
+package chessgame.board
 
 import chessgame.Team._
+import chessgame.pieces.Piece
 
 abstract class Tile(val tileCoordinate: Int) {
   def isTileOccupied: Boolean
 
   def getPiece: Piece
+
+  def getTileCoordinate: Int = tileCoordinate
 
   def toString: String
 }

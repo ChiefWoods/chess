@@ -1,4 +1,4 @@
-import chessgame.Board
+import chessgame.board.Board
 
 object Main {
   def main(args: Array[String]): Unit = {

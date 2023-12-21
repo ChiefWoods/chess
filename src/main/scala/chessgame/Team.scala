@@ -1,5 +1,7 @@
 package chessgame
 
+import chessgame.players.{BlackPlayer, Player, WhitePlayer}
+
 object Team extends Enumeration {
   type Team = Value
   val WHITE, BLACK = Value
@@ -13,5 +15,10 @@ object Team extends Enumeration {
     def isWhite: Boolean = team == WHITE
 
     def isBlack: Boolean = team == BLACK
+
+    def choosePlayer(whitePlayer: WhitePlayer, blackPlayer: BlackPlayer): Player = team match {
+      case WHITE => whitePlayer
+      case BLACK => blackPlayer
+    }
   }
 }
