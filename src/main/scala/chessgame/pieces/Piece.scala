@@ -3,7 +3,9 @@ package chessgame.pieces
 import chessgame.Team
 import chessgame.board.{Board, Move}
 
-abstract class Piece(private val team: Team.Team, private val pieceType: Piece.Piece, private val piecePosition: Int, private val isFirstMove: Boolean = false) {
+import java.util.Objects
+
+abstract class Piece(private val team: Team.Team, private val pieceType: Piece.Piece, private val piecePosition: Int, private val isFirstMove: Boolean) {
   private val cachedHashCode: Int = computeHashCode
 
   def getPieceTeam: Team.Team = team
@@ -18,24 +20,21 @@ abstract class Piece(private val team: Team.Team, private val pieceType: Piece.P
 
   def movePiece(move: Move): Piece
 
-  private def computeHashCode: Int = {
-    var result: Int = pieceType.hashCode
+  def computeHashCode: Int = {
     val prime = 31
+    var result = pieceType.hashCode
 
     result = prime * result + team.hashCode
     result = prime * result + piecePosition
-
-    if (isFirstMove) result = prime * result + 1
-    else result = prime * result + 0
-
+    result = prime * result + (if (isFirstMove) 1 else 0)
     result
   }
 
-  def equals(obj: Piece): Boolean = {
-    if (this == obj) return true
+  override def equals(obj: Any): Boolean = {
+//    if (this == obj) return true
     if (obj == null || !obj.isInstanceOf[Piece]) return false
 
-    val piece: Piece = obj
+    val piece: Piece = obj.asInstanceOf[Piece]
 
     team == piece.getPieceTeam &&
       pieceType == piece.getPieceType &&

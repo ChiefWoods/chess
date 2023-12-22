@@ -5,7 +5,7 @@ import chessgame.Team._
 import chessgame.board._
 import chessgame.pieces.Piece._
 
-class Bishop(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, BISHOP, piecePosition) {
+class Bishop(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, BISHOP, piecePosition, isFirstMove) {
   val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -7, 7, 9)
 
   override def calculateLegalMoves(board: Board): Set[Move] = {
@@ -23,13 +23,13 @@ class Bishop(private val team: Team.Team, private val piecePosition: Int) extend
             val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
             if (!candidateDestinationTile.isTileOccupied) {
-              legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
+              legalMoves += new MajorMove(board, candidateDestinationCoordinate, this)
             } else {
               val pieceAtDestination: Piece = candidateDestinationTile.getPiece
-              val pieceTeam: Team = pieceAtDestination.getPieceTeam
+              val pieceTeam: Team.Team = pieceAtDestination.getPieceTeam
 
               if (team != pieceTeam) {
-                legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
+                legalMoves += new AttackMove(board, candidateDestinationCoordinate, this, pieceAtDestination)
               }
               candidateDestinationCoordinate = -1
             }

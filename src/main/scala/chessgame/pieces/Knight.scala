@@ -5,7 +5,7 @@ import chessgame.Team._
 import chessgame.board._
 import chessgame.pieces.Piece._
 
-class Knight(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, KNIGHT, piecePosition) {
+class Knight(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, KNIGHT, piecePosition, isFirstMove) {
   val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-17, -15, -10, -6, 6, 10, 15, 17)
 
   override def calculateLegalMoves(board: Board): Set[Move] = {
@@ -23,13 +23,13 @@ class Knight(private val team: Team.Team, private val piecePosition: Int) extend
           val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
           if (!candidateDestinationTile.isTileOccupied) {
-            legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
+            legalMoves += new MajorMove(board, candidateDestinationCoordinate, this)
           } else {
             val pieceAtDestination: Piece = candidateDestinationTile.getPiece
-            val pieceTeam: Team = pieceAtDestination.getPieceTeam
+            val pieceTeam: Team.Team = pieceAtDestination.getPieceTeam
 
             if (team != pieceTeam) {
-              legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
+              legalMoves += new AttackMove(board, candidateDestinationCoordinate, this, pieceAtDestination)
             }
           }
         }
