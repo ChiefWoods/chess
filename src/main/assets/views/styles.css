@@ -1,0 +1,17 @@
+.light-tile {
+    -fx-background-color: #FFFACD;
+}
+
+.dark-tile {
+    -fx-background-color: #593E1A;
+}
+
+/* Welcome */
+
+.welcome .button {
+    -fx-background-color: #665e66;
+}
+
+.welcome .button:hover {
+    -fx-background-color: #494449;
+}

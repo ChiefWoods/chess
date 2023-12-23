@@ -30,10 +30,11 @@ abstract class Player(private val board: Board, private var legalMoves: Set[Move
 
   def isInStalemate: Boolean = inCheck && !hasEscapeMoves
 
-  def isCastled: Boolean = false
+  def hasCastled: Boolean = false
 
   def makeMove(move: Move): MoveTransition = {
     if (!isMoveLegal(move)) {
+      println("Illegal move!")
       return MoveTransition(board, move, ILLEGAL_MOVE)
     }
 
@@ -41,9 +42,11 @@ abstract class Player(private val board: Board, private var legalMoves: Set[Move
     val kingAttacks = Player.calculateAttacksOnTile(transitionBoard.getCurrentPlayer.getOpponent.playerKing.getPiecePosition, transitionBoard.getCurrentPlayer.legalMoves)
 
     if (kingAttacks.nonEmpty) {
+      println("Illegal move! King is in check!")
       return MoveTransition(board, move, LEAVES_PLAYER_IN_CHECK)
     }
 
+    println("Move successful!")
     MoveTransition(transitionBoard, move, DONE)
   }
 

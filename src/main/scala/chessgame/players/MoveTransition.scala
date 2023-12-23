@@ -8,4 +8,6 @@ case class MoveTransition(private val transitionBoard: Board, private val move: 
   def getMove: Move = move
 
   def getMoveStatus: MoveStatus.MoveStatus = moveStatus
+
+  def getTransitionBoard: Board = transitionBoard
 }
