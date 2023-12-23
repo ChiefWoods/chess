@@ -15,7 +15,7 @@ case class Board(private val builder: Builder) {
 	private val whiteLegalMoves: Set[Move] = calculateLegalMoves(whitePieces)
 	private val blackLegalMoves: Set[Move] = calculateLegalMoves(blackPieces)
 	private val whitePlayer: WhitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves)
-	private val blackPlayer: BlackPlayer = new BlackPlayer(this, whiteLegalMoves, blackLegalMoves)
+	private val blackPlayer: BlackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves)
 	private val currentPlayer: Player = builder.nextMoveMaker.choosePlayer(whitePlayer, blackPlayer)
 
 	private def calculateActivePieces(gameBoard: List[Tile], team: Team.Team): Set[Piece] = {

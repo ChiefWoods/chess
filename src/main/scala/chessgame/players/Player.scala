@@ -6,7 +6,7 @@ import chessgame.pieces.{King, Piece}
 import chessgame.players.MoveStatus._
 
 abstract class Player(private val board: Board, private var legalMoves: Set[Move], private val opponentMoves: Set[Move]) {
-  val playerKing: King = establishKing
+  private val playerKing: King = establishKing
   legalMoves ++= calculateKingCastles(legalMoves, opponentMoves)
   val inCheck = Player.calculateAttacksOnTile(playerKing.getPiecePosition, opponentMoves).nonEmpty
 

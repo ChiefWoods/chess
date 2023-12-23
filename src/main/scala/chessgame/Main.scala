@@ -45,7 +45,7 @@ object Main extends JFXApp {
 		val resource = getClass.getResource("/views/Chessboard.fxml")
 		val loader = new FXMLLoader(resource, NoDependencyResolver)
 		loader.load();
-		val root = loader.getRoot[jfxs.layout.AnchorPane]
+		val root = loader.getRoot[jfxs.layout.BorderPane]
 		val chessboardGrid = root.getChildren.get(0).asInstanceOf[jfxs.layout.GridPane]
 		val chessboardController = loader.getController[ChessboardController#Controller]
 
@@ -60,8 +60,8 @@ object Main extends JFXApp {
 
 				button.setGraphic(new ImageView() {
 					setPreserveRatio(true)
-					setFitWidth(60)
-					setFitHeight(60)
+					setFitWidth(50)
+					setFitHeight(50)
 
 					if (board.getTile(tileId).isTileOccupied) {
 						val pieceTeam = board.getTile(tileId).getPiece.getPieceTeam
