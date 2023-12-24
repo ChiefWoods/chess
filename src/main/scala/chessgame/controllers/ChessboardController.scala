@@ -1,8 +1,7 @@
 package chessgame.controllers;
 
 import chessgame.Main
-import chessgame.Main.getClass
-import chessgame.board.{Board, Move, Tile}
+import chessgame.board.{AttackMove, Board, CastleMove, Move, PawnPromotion, Tile}
 import chessgame.models.Stats
 import chessgame.pieces.Piece
 import javafx.scene.input.MouseButton.{PRIMARY, SECONDARY}
@@ -38,34 +37,40 @@ class ChessboardController {
 		val opponentActivePieces: Set[Piece] = board.getCurrentPlayer.getOpponent.getActivePieces
 
 		if (event.getButton == PRIMARY) {
+			// When no piece was selected
 			if (pieceToMove == null) {
 				sourceTile = board.getTile(tileId)
 				pieceToMove = sourceTile.getPiece
 
+				// When an empty tile or an opponent piece is selected
 				if (pieceToMove == null || (pieceToMove.getPieceTeam != board.getCurrentPlayer.getTeam)) {
 					sourceTile = null
 					pieceToMove = null
+					// When a friendly piece is selected
 				} else if (pieceToMove.getPieceTeam == board.getCurrentPlayer.getTeam) {
 					pieceLegalMoves = board.getAllLegalMoves.filter(_.getMovedPiece == pieceToMove)
 					highlightMoves(gridPane, pieceLegalMoves, opponentActivePieces)
+					highlightSourceTile(gridPane, tileId)
 				}
+				// When a piece was selected
 			} else {
 				destinationTile = board.getTile(tileId)
 
+				// When destination tile is empty or contains an opponent piece
 				if (!destinationTile.isTileOccupied || opponentActivePieces.contains(destinationTile.getPiece)) {
 					val move = Move.createMove(board, sourceTile.getTileCoordinate, destinationTile.getTileCoordinate)
 					val transition = board.getCurrentPlayer.makeMove(move)
 
-					if (move.isAttack) {
+					if (move.isInstanceOf[AttackMove]) {
 						Stats.incrementPiecesCaptured
 					}
 
 					if (transition.getMoveStatus.isDone) {
-						println("Move successful!")
+						println(move.toString)
 						playSound(move)
 					} else if (transition.getMoveStatus.leavesPlayerInCheck) {
 						println("Illegal move! King is in check!")
-					} else {
+					} else if (transition.getMoveStatus.isIllegalMove) {
 						println("Illegal move!")
 					}
 
@@ -75,7 +80,6 @@ class ChessboardController {
 
 					board = transition.getTransitionBoard
 					Main.showBoard(board)
-					println(move.toString)
 
 					if (board.getCurrentPlayer.isInCheckmate) {
 						checkPlayer.stop()
@@ -114,17 +118,20 @@ class ChessboardController {
 
 						disableAllBtns(gridPane)
 					}
+					// When the destination tile is the same as the source tile
 				} else if (destinationTile.getPiece.getPieceTeam == board.getCurrentPlayer.getTeam && destinationTile.getPiece == pieceToMove) {
 					sourceTile = null
 					pieceToMove = null
 					destinationTile = null
 					unhighlightMoves(gridPane)
+					// When destination tile contains a friendly piece
 				} else {
 					sourceTile = board.getTile(tileId)
 					pieceToMove = sourceTile.getPiece
 					pieceLegalMoves = board.getAllLegalMoves.filter(_.getMovedPiece == pieceToMove)
 					unhighlightMoves(gridPane)
 					highlightMoves(gridPane, pieceLegalMoves, opponentActivePieces)
+					highlightSourceTile(gridPane, tileId)
 				}
 			}
 		} else if (event.getButton == SECONDARY) {
@@ -134,7 +141,7 @@ class ChessboardController {
 		}
 	}
 
-	def highlightMoves(gridPane: javafx.scene.layout.GridPane, legalMoves: Set[Move], opponentActivePieces: Set[Piece]): Unit = {
+	def highlightMoves(gridPane: javafx.scene.layout.GridPane, legalMoves: Set[Move], opponentActivePieces: Set[Piece]) = {
 		for (move <- legalMoves) {
 			val tileId = move.getDestinationCoordinate
 			val button = gridPane.getChildren.get(tileId).asInstanceOf[javafx.scene.control.Button]
@@ -147,30 +154,36 @@ class ChessboardController {
 		}
 	}
 
-	def unhighlightMoves(gridPane: javafx.scene.layout.GridPane): Unit = {
+	def unhighlightMoves(gridPane: javafx.scene.layout.GridPane) = {
 		for (tileId <- 0 until Board.TILES_COUNT) {
 			val button = gridPane.getChildren.get(tileId).asInstanceOf[javafx.scene.control.Button]
-			button.getStyleClass.removeAll("major-move", "attack-move")
+			button.getStyleClass.removeAll("source-tile", "major-move", "attack-move")
 		}
+	}
+
+	def highlightSourceTile(gridPane: javafx.scene.layout.GridPane, tileId: Int) = {
+		val button = gridPane.getChildren.get(tileId).asInstanceOf[javafx.scene.control.Button]
+		button.getStyleClass.add("source-tile")
 	}
 
 	def playSound(move: Move) = {
-		if (move.isAttack) {
-			capturePlayer.stop()
-			capturePlayer.play()
-		} else if (move.isCastle) {
-			castlePlayer.stop()
-			castlePlayer.play()
-		} else if (move.isPromotion) {
-			promotePlayer.stop()
-			promotePlayer.play()
-		} else {
-			movePlayer.stop()
-			movePlayer.play()
+		move match {
+			case _: AttackMove =>
+				capturePlayer.stop()
+				capturePlayer.play()
+			case _: CastleMove =>
+				castlePlayer.stop()
+				castlePlayer.play()
+			case _: PawnPromotion =>
+				promotePlayer.stop()
+				promotePlayer.play()
+			case _ =>
+				movePlayer.stop()
+				movePlayer.play()
 		}
 	}
 
-	def disableAllBtns(gridPane: javafx.scene.layout.GridPane): Unit = {
+	def disableAllBtns(gridPane: javafx.scene.layout.GridPane) = {
 		for (tileId <- 0 until Board.TILES_COUNT) {
 			val button = gridPane.getChildren.get(tileId).asInstanceOf[javafx.scene.control.Button]
 			button.setDisable(true)

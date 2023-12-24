@@ -1,9 +1,9 @@
 package chessgame.board
 
-import chessgame.Team
-import chessgame.Team._
+import chessgame.utils.Team._
 import chessgame.pieces._
 import chessgame.players.{BlackPlayer, Player, WhitePlayer}
+import chessgame.utils.Team
 
 import scala.collection.mutable
 
@@ -11,12 +11,12 @@ case class Board(private val builder: Builder) {
 	private val gameBoard: List[Tile] = Board.createGameBoard(builder)
 	private val whitePieces: Set[Piece] = calculateActivePieces(gameBoard, WHITE)
 	private val blackPieces: Set[Piece] = calculateActivePieces(gameBoard, BLACK)
-	private val enPassantPawn: Pawn = builder.enPassantPawn
+	private val enPassantPawn: Pawn = builder.getEnPassantPawn
 	private val whiteLegalMoves: Set[Move] = calculateLegalMoves(whitePieces)
 	private val blackLegalMoves: Set[Move] = calculateLegalMoves(blackPieces)
 	private val whitePlayer: WhitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves)
 	private val blackPlayer: BlackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves)
-	private val currentPlayer: Player = builder.nextMoveMaker.choosePlayer(whitePlayer, blackPlayer)
+	private val currentPlayer: Player = builder.getNextMoveMaker.choosePlayer(whitePlayer, blackPlayer)
 
 	def getWhitePieces: Set[Piece] = whitePieces
 
@@ -79,7 +79,6 @@ object Board {
 	val SEVENTH_ROW: Array[Boolean] = initRow(6)
 	val EIGHTH_ROW: Array[Boolean] = initRow(7)
 	val ALGEBRAIC_NOTATION: Array[String] = initAlgebraicNotation
-	val POSITION_TO_COORDINATE: mutable.Map[String, Int] = initPositionToCoordinateMap
 
 	private def initColumn(columnNumber: Int): Array[Boolean] = {
 		val column: Array[Boolean] = new Array[Boolean](TILES_COUNT)
@@ -106,7 +105,7 @@ object Board {
 		row
 	}
 
-	def initAlgebraicNotation: Array[String] = {
+	private def initAlgebraicNotation: Array[String] = {
 		val algebraicNotation: Array[String] = new Array[String](TILES_COUNT)
 
 		var index = 0
@@ -118,20 +117,6 @@ object Board {
 		}
 
 		algebraicNotation
-	}
-
-	def initPositionToCoordinateMap: mutable.Map[String, Int] = {
-		val positionToCoordinate: mutable.Map[String, Int] = mutable.Map()
-
-		for (i <- 0 until TILES_COUNT) {
-			positionToCoordinate += (ALGEBRAIC_NOTATION(i) -> i)
-		}
-
-		positionToCoordinate
-	}
-
-	def getCoordinateAtPosition(position: String): Option[Int] = {
-		POSITION_TO_COORDINATE.get(position)
 	}
 
 	def getPositionAtCoordinate(coordinate: Int): String = {
@@ -146,7 +131,7 @@ object Board {
 		val tiles: Array[Tile] = new Array[Tile](Board.TILES_COUNT)
 
 		for (i <- 0 until Board.TILES_COUNT) {
-			tiles(i) = Tile.createTile(i, builder.boardConfig.getOrElse(i, null))
+			tiles(i) = Tile.createTile(i, builder.getBoardConfig.getOrElse(i, null))
 		}
 
 		tiles.toList
@@ -194,18 +179,15 @@ object Board {
 }
 
 class Builder() {
-	var boardConfig: mutable.Map[Int, Piece] = mutable.Map()
-	var nextMoveMaker: Team.Team = WHITE
-	var enPassantPawn: Pawn = null
+	private var boardConfig: mutable.Map[Int, Piece] = mutable.Map()
+	private var nextMoveMaker: Team.Team = WHITE
+	private var enPassantPawn: Pawn = null
 
-	def build: Board = {
-		new Board(this)
-	}
+	def getBoardConfig: mutable.Map[Int, Piece] = boardConfig
 
-	def setPiece(piece: Piece): Builder = {
-		boardConfig += (piece.getPiecePosition -> piece)
-		this
-	}
+	def getNextMoveMaker: Team.Team = nextMoveMaker
+
+	def getEnPassantPawn: Pawn = enPassantPawn
 
 	def setMoveMaker(moveMaker: Team.Team): Builder = {
 		nextMoveMaker = moveMaker
@@ -214,5 +196,14 @@ class Builder() {
 
 	def setEnPassantPawn(movedPawn: Pawn) = {
 		enPassantPawn = movedPawn
+	}
+
+	def setPiece(piece: Piece): Builder = {
+		boardConfig += (piece.getPiecePosition -> piece)
+		this
+	}
+
+	def build: Board = {
+		new Board(this)
 	}
 }

@@ -1,10 +1,14 @@
 package chessgame.pieces
 
-import chessgame.Team
 import chessgame.board._
 import chessgame.pieces.Piece._
+import chessgame.utils.Team
 
-case class Queen(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, QUEEN, piecePosition, isFirstMove) {
+case class Queen(private val team: Team.Team,
+                 private val piecePosition: Int,
+                 private val isFirstMove: Boolean = true)
+	extends Piece(team, QUEEN, piecePosition, isFirstMove) {
+
 	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
 
 	override def calculateLegalMoves(board: Board): Set[Move] = {

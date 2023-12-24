@@ -1,4 +1,4 @@
-package chessgame
+package chessgame.utils
 
 import chessgame.board.Board
 import chessgame.players.{BlackPlayer, Player, WhitePlayer}

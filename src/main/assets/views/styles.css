@@ -14,14 +14,18 @@
     -fx-background-color: #494449;
 }
 
+.source-tile {
+    -fx-background-color: #e9f687;
+}
+
 .major-move {
-    -fx-background-color: #89fc89;
+    -fx-background-color: #93ecf1;
 }
 
 .attack-move {
-    -fx-background-color: #fc8989;
+    -fx-background-color: #f57a7a;
 }
 
 .in-check {
-    -fx-background-color: #ea3434 !important;
+    -fx-background-color: #ef4242 !important;
 }

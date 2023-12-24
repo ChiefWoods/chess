@@ -1,7 +1,7 @@
-package chessgame
+package chessgame.utils
 
-import scalikejdbc._
 import chessgame.models.Stats
+import scalikejdbc._
 
 trait Database {
 	val derbyDriverClassname = "org.apache.derby.jdbc.EmbeddedDriver"

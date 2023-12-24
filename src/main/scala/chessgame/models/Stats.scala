@@ -1,6 +1,6 @@
 package chessgame.models
 
-import chessgame.Database
+import chessgame.utils.Database
 import scalafx.beans.property.IntegerProperty
 import scalikejdbc.{DB, scalikejdbcSQLInterpolationImplicitDef}
 
@@ -10,21 +10,10 @@ class Stats(val piecesCapturedInt: Int) extends Database {
 	def this() = this(0)
 
 	var piecesCaptured = IntegerProperty(piecesCapturedInt)
-
-	def hasStats: Boolean = {
-		DB readOnly { implicit session =>
-			sql"SELECT * FROM Stats".map(rs => Stats(
-				rs.int("pieces_captured")
-			)).single.apply()
-		} match {
-			case Some(x) => true
-			case None => false
-		}
-	}
 }
 
 object Stats extends Database {
-	def apply(piecesCapturedInt: Int) = {
+	def apply(piecesCapturedInt: Int): Stats = {
 		new Stats(piecesCapturedInt) {
 			piecesCaptured.value = piecesCapturedInt
 		}
@@ -33,30 +22,35 @@ object Stats extends Database {
 	def initializeTable = {
 		DB autoCommit { implicit session =>
 			sql"""
-				CREATE TABLE Stats (
+				CREATE TABLE stats (
 					id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 					pieces_captured INT
 				)
 			""".execute.apply()
+			sql"""
+				INSERT INTO stats (pieces_captured)
+				VALUES (0)
+			""".update.apply()
 		}
 	}
 
 	def getStats: Stats = {
 		DB readOnly { implicit session =>
-			sql"SELECT * FROM Stats".map(rs => Stats(
+			sql"SELECT * FROM stats WHERE id = 1".map(rs => Stats(
 				rs.int("pieces_captured")
 			)).single.apply()
 		} match {
 			case Some(x) => x
-			case None => Stats(0)
+			case None => null
 		}
 	}
 
 	def resetStats: Try[Int] = {
 		Try(DB autoCommit { implicit session =>
 			sql"""
-				UPDATE Stats SET
+				UPDATE stats SET
 				pieces_captured = 0
+				WHERE id = 1
 			""".update.apply()
 		})
 	}
@@ -64,8 +58,9 @@ object Stats extends Database {
 	def incrementPiecesCaptured: Try[Int] = {
 		Try(DB autoCommit { implicit session =>
 			sql"""
-				UPDATE Stats SET
+				UPDATE stats SET
 				pieces_captured = pieces_captured + 1
+				WHERE id = 1
 			""".update.apply()
 		})
 	}

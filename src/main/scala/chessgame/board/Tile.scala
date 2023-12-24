@@ -1,6 +1,6 @@
 package chessgame.board
 
-import chessgame.Team._
+import chessgame.utils.Team._
 import chessgame.pieces.Piece
 
 abstract class Tile(val tileCoordinate: Int) {

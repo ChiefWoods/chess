@@ -1,10 +1,14 @@
 package chessgame.players
 
-import chessgame.Team.{Team, WHITE}
+import chessgame.utils.Team.{Team, WHITE}
 import chessgame.board.{Board, KingSideCastle, Move, QueenSideCastle}
 import chessgame.pieces.{Piece, Rook}
 
-class WhitePlayer(private val board: Board, private val whiteLegalMoves: Set[Move], private val blackLegalMoves: Set[Move]) extends Player(board, whiteLegalMoves, blackLegalMoves) {
+class WhitePlayer(private val board: Board,
+                  private val whiteLegalMoves: Set[Move],
+                  private val blackLegalMoves: Set[Move])
+	extends Player(board, whiteLegalMoves, blackLegalMoves) {
+
 	override def getTeam: Team = WHITE
 
 	override def getActivePieces: Set[Piece] = board.getWhitePieces

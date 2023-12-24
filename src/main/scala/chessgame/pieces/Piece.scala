@@ -1,9 +1,13 @@
 package chessgame.pieces
 
-import chessgame.Team
 import chessgame.board.{Board, Move}
+import chessgame.utils.Team
 
-abstract class Piece(private val team: Team.Team, private val pieceType: Piece.Piece, private val piecePosition: Int, private val isFirstMove: Boolean) {
+abstract class Piece(private val team: Team.Team,
+                     private val pieceType: Piece.Piece,
+                     private val piecePosition: Int,
+                     private val isFirstMove: Boolean) {
+
 	def getPieceTeam: Team.Team = team
 
 	def getPieceType: Piece.Piece = pieceType

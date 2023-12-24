@@ -1,11 +1,15 @@
 package chessgame.pieces
 
-import chessgame.Team
-import chessgame.Team._
+import chessgame.utils.Team._
 import chessgame.board._
 import chessgame.pieces.Piece._
+import chessgame.utils.Team
 
-case class Pawn(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, PAWN, piecePosition, isFirstMove) {
+case class Pawn(private val team: Team.Team,
+                private val piecePosition: Int,
+                private val isFirstMove: Boolean = true)
+	extends Piece(team, PAWN, piecePosition, isFirstMove) {
+
 	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(8, 16, 7, 9)
 
 	override def calculateLegalMoves(board: Board): Set[Move] = {

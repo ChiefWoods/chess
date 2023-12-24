@@ -1,11 +1,14 @@
 package chessgame.players
 
-import chessgame.Team.Team
+import chessgame.utils.Team.Team
 import chessgame.board.{Board, Move}
 import chessgame.pieces.{King, Piece}
 import chessgame.players.MoveStatus._
 
-abstract class Player(private val board: Board, private var legalMoves: Set[Move], private val opponentMoves: Set[Move]) {
+abstract class Player(private val board: Board,
+                      private var legalMoves: Set[Move],
+                      private val opponentMoves: Set[Move]) {
+
 	private val playerKing: King = establishKing
 	legalMoves ++= calculateKingCastles(legalMoves, opponentMoves)
 	private val inCheck = Player.calculateAttacksOnTile(playerKing.getPiecePosition, opponentMoves).nonEmpty

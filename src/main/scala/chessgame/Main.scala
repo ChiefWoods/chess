@@ -1,8 +1,8 @@
 package chessgame
 
 import chessgame.board.Board
-import chessgame.controllers.{ChessboardController, StatsController}
-import chessgame.models.Stats
+import chessgame.controllers.ChessboardController
+import chessgame.utils.Database
 import javafx.scene.image.ImageView
 import javafx.{scene => jfxs}
 import scalafx.Includes._
@@ -14,16 +14,16 @@ import scalafx.scene.media.{Media, MediaPlayer}
 import scalafxml.core.{FXMLLoader, NoDependencyResolver}
 
 object Main extends JFXApp {
+	Database.setupDB
 	private val tilesPerRow = Board.TILES_PER_ROW
 	private val music = new Media(getClass.getResource("/audio/TournerDansLeVide.mp3").toString)
 	private val player = new MediaPlayer(music)
-	Database.setupDB
-	var statsData = Stats.getStats
 
 	val rootResource = getClass.getResource("/views/RootLayout.fxml")
 	val loader = new FXMLLoader(rootResource, NoDependencyResolver)
 	loader.load()
 	val roots = loader.getRoot[jfxs.layout.BorderPane]()
+
 	stage = new PrimaryStage {
 		title = "Chess"
 		icons += new Image(getClass.getResourceAsStream("/images/chess/basic.png"))
@@ -78,7 +78,6 @@ object Main extends JFXApp {
 		}
 
 		if (board.getCurrentPlayer.isInCheck) {
-			println("king in check")
 			val kingTileId: String = s"tile_${board.getCurrentPlayer.getPlayerKing.getPiecePosition}"
 			val kingButton = chessboardGrid.lookup(s"#$kingTileId").asInstanceOf[jfxs.control.Button]
 			kingButton.getStyleClass.add("in-check")
@@ -94,8 +93,8 @@ object Main extends JFXApp {
 		val loader = new FXMLLoader(resource, NoDependencyResolver)
 		loader.load();
 		val root = loader.getRoot[jfxs.layout.AnchorPane]
-		val statsController = loader.getController[StatsController#Controller]
-		statsController.setStats
+//		val statsController = loader.getController[StatsController#Controller]
+//		statsController.setStats
 		roots.setCenter(root)
 	}
 
