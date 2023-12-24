@@ -7,33 +7,31 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #d1d1d1;" stylesheets="@styles.css"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="chessgame.controllers.RootLayoutController">
+<BorderPane prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #d1d1d1;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessgame.controllers.RootLayoutController">
     <top>
         <MenuBar minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem onAction="#exitApp" text="_Exit"/>
+                        <MenuItem onAction="#exitApp" text="_Exit" />
                     </items>
                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Game">
                     <items>
-                        <MenuItem onAction="#quitGame" text="_Quit"/>
+                        <MenuItem onAction="#quitGame" text="_Draw" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem onAction="#aboutGame" text="_About"/>
+                        <MenuItem onAction="#aboutGame" text="_About" />
                     </items>
                 </Menu>
             </menus>
             <BorderPane.margin>
-                <Insets/>
+                <Insets />
             </BorderPane.margin>
         </MenuBar>
     </top>

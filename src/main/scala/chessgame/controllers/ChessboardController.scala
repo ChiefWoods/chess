@@ -1,9 +1,10 @@
 package chessgame.controllers;
 
 import chessgame.Main
-import chessgame.board.{AttackMove, Board, CastleMove, Move, PawnPromotion, Tile}
+import chessgame.board.{AttackMove, Board, CastleMove, Move, PawnEnPassant, PawnPromotion, Tile}
 import chessgame.models.Stats
 import chessgame.pieces.Piece
+import chessgame.pieces.Piece._
 import javafx.scene.input.MouseButton.{PRIMARY, SECONDARY}
 import javafx.scene.input.MouseEvent
 import scalafx.scene.control.Alert
@@ -61,10 +62,6 @@ class ChessboardController {
 					val move = Move.createMove(board, sourceTile.getTileCoordinate, destinationTile.getTileCoordinate)
 					val transition = board.getCurrentPlayer.makeMove(move)
 
-					if (move.isInstanceOf[AttackMove]) {
-						Stats.incrementPiecesCaptured
-					}
-
 					if (transition.getMoveStatus.isDone) {
 						println(move.toString)
 						playSound(move)
@@ -80,6 +77,7 @@ class ChessboardController {
 
 					board = transition.getTransitionBoard
 					Main.showBoard(board)
+					incrementStats(move)
 
 					if (board.getCurrentPlayer.isInCheckmate) {
 						checkPlayer.stop()
@@ -87,35 +85,14 @@ class ChessboardController {
 
 						val winner = board.getCurrentPlayer.getOpponent.getTeam.toString
 
-						new Alert(Alert.AlertType.Information) {
-							initOwner(Main.stage)
-							title = "Game Ended"
-							headerText = "Checkmate!"
-							contentText = s"$winner wins!"
-							graphic = new ImageView() {
-								image = new Image(getClass.getResourceAsStream(s"/images/chess/$winner.png"))
-								fitWidth = 50
-								fitHeight = 50
-							}
-						}.showAndWait()
-
+						showCheckmateAlert(winner)
 						disableAllBtns(gridPane)
+						Stats.incrementCheckmates
 					} else if (board.getCurrentPlayer.isInStalemate) {
 						checkPlayer.stop()
 						checkPlayer.play()
 
-						new Alert(Alert.AlertType.Information) {
-							initOwner(Main.stage)
-							title = "Game Ended"
-							headerText = "Stalemate!"
-							contentText = "It's a draw!"
-							graphic = new ImageView() {
-								image = new Image(getClass.getResourceAsStream(s"/images/chess/basic.png"))
-								fitWidth = 50
-								fitHeight = 50
-							}
-						}.showAndWait()
-
+						showStalemateAlert
 						disableAllBtns(gridPane)
 					}
 					// When the destination tile is the same as the source tile
@@ -187,6 +164,59 @@ class ChessboardController {
 		for (tileId <- 0 until Board.TILES_COUNT) {
 			val button = gridPane.getChildren.get(tileId).asInstanceOf[javafx.scene.control.Button]
 			button.setDisable(true)
+		}
+	}
+
+	def showCheckmateAlert(winner: String) = {
+		new Alert(Alert.AlertType.Information) {
+			initOwner(Main.stage)
+			title = "Game Ended"
+			headerText = "Checkmate!"
+			contentText = s"$winner wins!"
+			graphic = new ImageView() {
+				image = new Image(getClass.getResourceAsStream(s"/images/chess/$winner.png"))
+				fitWidth = 50
+				fitHeight = 50
+			}
+		}.showAndWait()
+	}
+
+	def showStalemateAlert = {
+		new Alert(Alert.AlertType.Information) {
+			initOwner(Main.stage)
+			title = "Game Ended"
+			headerText = "Stalemate!"
+			contentText = "It's a draw!"
+			graphic = new ImageView() {
+				image = new Image(getClass.getResourceAsStream(s"/images/chess/basic.png"))
+				fitWidth = 50
+				fitHeight = 50
+			}
+		}.showAndWait()
+	}
+
+	def incrementStats(move: Move) = {
+		move match {
+			case _: AttackMove =>
+				move.getMovedPiece.getPieceType match {
+					case PAWN => Stats.incrementPawnsCaptured
+					case KNIGHT => Stats.incrementKnightsCaptured
+					case BISHOP => Stats.incrementBishopsCaptured
+					case ROOK => Stats.incrementRooksCaptured
+					case QUEEN => Stats.incrementQueensCaptured
+					case _ =>
+				}
+
+				if (move.isInstanceOf[PawnEnPassant]) {
+					Stats.incrementEnPassants
+				}
+
+				Stats.incrementPiecesCaptured
+			case _: CastleMove =>
+				Stats.incrementCastles
+			case _: PawnPromotion =>
+				Stats.incrementPromotions
+			case _ =>
 		}
 	}
 }

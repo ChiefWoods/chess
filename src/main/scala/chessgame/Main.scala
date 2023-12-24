@@ -93,8 +93,6 @@ object Main extends JFXApp {
 		val loader = new FXMLLoader(resource, NoDependencyResolver)
 		loader.load();
 		val root = loader.getRoot[jfxs.layout.AnchorPane]
-//		val statsController = loader.getController[StatsController#Controller]
-//		statsController.setStats
 		roots.setCenter(root)
 	}
 

@@ -9,7 +9,18 @@ import scalafx.scene.text.Text
 import scalafxml.core.macros.sfxml
 
 @sfxml
-class StatsController(private val piecesCapturedText: Text) {
+class StatsController(private val piecesCapturedText: Text,
+                      private val pawnsCapturedText: Text,
+                      private val knightsCapturedText: Text,
+                      private val bishopsCapturedText: Text,
+                      private val rooksCapturedText: Text,
+                      private val queensCapturedText: Text,
+                      private val checkmatesText: Text,
+                      private val castlesText: Text,
+                      private val promotionsText: Text,
+                      private val enPassantsText: Text,
+                     ) {
+
 	def goBack = {
 		Main.showWelcome
 	}
@@ -34,8 +45,26 @@ class StatsController(private val piecesCapturedText: Text) {
 		val stats = Stats.getStats
 		if (stats != null) {
 			piecesCapturedText.text = stats.piecesCapturedInt.toString
+			pawnsCapturedText.text = stats.pawnsCapturedInt.toString
+			knightsCapturedText.text = stats.knightsCapturedInt.toString
+			bishopsCapturedText.text = stats.bishopsCapturedInt.toString
+			rooksCapturedText.text = stats.rooksCapturedInt.toString
+			queensCapturedText.text = stats.queensCapturedInt.toString
+			checkmatesText.text = stats.checkmatesInt.toString
+			castlesText.text = stats.castlesInt.toString
+			promotionsText.text = stats.promotionsInt.toString
+			enPassantsText.text = stats.enPassantsInt.toString
 		} else {
 			piecesCapturedText.text = "0"
+			pawnsCapturedText.text = "0"
+			knightsCapturedText.text = "0"
+			bishopsCapturedText.text = "0"
+			rooksCapturedText.text = "0"
+			queensCapturedText.text = "0"
+			checkmatesText.text = "0"
+			castlesText.text = "0"
+			promotionsText.text = "0"
+			enPassantsText.text = "0"
 		}
 	}
 
