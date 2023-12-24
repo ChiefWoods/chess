@@ -1,30 +1,32 @@
 package chessgame.board
 
-import chessgame.pieces.{Pawn, Piece, Rook}
+import chessgame.pieces.Piece.PAWN
+import chessgame.pieces.{King, Pawn, Piece, Rook}
 
 trait Attack {
-	def isAttack: Boolean
+	def isAttack: Boolean = false
 
-	def getAttackedPiece: Piece
+	def getAttackedPiece: Piece = null
 }
 
 trait Castle {
-	def isCastlingMove: Boolean
+	def isCastle: Boolean = false
 
-	def getCastleRook: Rook
+	def getCastleRook: Rook = null
 }
 
-class Move(private val board: Board,
+trait Promotion {
+	def isPromotion: Boolean = false
+}
+
+abstract class Move(private val board: Board,
            private val destinationCoordinate: Int,
-           private val movedPiece: Piece = null,
-           private val isFirstMove: Boolean = false) {
+           private val movedPiece: Piece = null) extends Attack with Castle with Promotion {
 	def getDestinationCoordinate: Int = destinationCoordinate
 
 	def getMovedPiece: Piece = movedPiece
 
 	def getCurrentCoordinate: Int = movedPiece.getPiecePosition
-
-	def getBoard: Board = board
 
 	def execute: Board = {
 		val builder: Builder = new Builder()
@@ -65,7 +67,7 @@ case class MajorMove(private val board: Board,
                      private val movedPiece: Piece)
 	extends Move(board, destinationCoordinate, movedPiece) {
 	override def toString: String = {
-		movedPiece.getPieceType.toString + Board.getPositionAtCoordinate(destinationCoordinate)
+		movedPiece.toString + Board.getPositionAtCoordinate(destinationCoordinate)
 	}
 }
 
@@ -74,9 +76,9 @@ class AttackMove(private val board: Board,
                  private val movedPiece: Piece,
                  private val attackedPiece: Piece)
 	extends Move(board, destinationCoordinate, movedPiece) with Attack {
-	def isAttack: Boolean = true
+	override def isAttack: Boolean = true
 
-	def getAttackedPiece: Piece = attackedPiece
+	override def getAttackedPiece: Piece = attackedPiece
 }
 
 case class MajorAttackMove(private val board: Board,
@@ -85,7 +87,7 @@ case class MajorAttackMove(private val board: Board,
                            private val attackedPiece: Piece)
 	extends AttackMove(board, destinationCoordinate, movedPiece, attackedPiece) {
 	override def toString: String = {
-		movedPiece.getPieceType.toString + Board.getPositionAtCoordinate(destinationCoordinate)
+		movedPiece.toString + Board.getPositionAtCoordinate(destinationCoordinate)
 	}
 }
 
@@ -131,6 +133,10 @@ case class PawnEnPassant(private val board: Board,
 		builder.setPiece(movedPiece.movePiece(this))
 		builder.setMoveMaker(board.getCurrentPlayer.getOpponent.getTeam)
 		builder.build
+	}
+
+	override def toString: String = {
+		Board.getPositionAtCoordinate(movedPiece.getPiecePosition).substring(0, 1) + "x" + Board.getPositionAtCoordinate(destinationCoordinate) + "e.p."
 	}
 }
 
@@ -190,9 +196,7 @@ case class PawnPromotion(private val decoratedMove: Move,
 		builder.build
 	}
 
-	def isAttack: Boolean = true
-
-	def getAttackedPiece: Piece = attackedPiece
+	override def getAttackedPiece: Piece = attackedPiece
 
 	override def toString: String = {
 		Board.getPositionAtCoordinate(destinationCoordinate) + "=" + promotedPawn.getPromotionPiece
@@ -206,9 +210,9 @@ class CastleMove(private val board: Board,
                  private val castleRookStart: Int,
                  private val castleRookDestination: Int)
 	extends Move(board, destinationCoordinate, movedPiece) with Castle {
-	def isCastlingMove: Boolean = true
+	override def isCastle: Boolean = true
 
-	def getCastleRook: Rook = castleRook
+	override def getCastleRook: Rook = castleRook
 
 	override def execute: Board = {
 		val builder: Builder = new Builder()
@@ -224,7 +228,7 @@ class CastleMove(private val board: Board,
 		}
 
 		builder.setPiece(movedPiece.movePiece(this))
-		builder.setPiece(Rook(castleRook.getPieceTeam, castleRookDestination))
+		builder.setPiece(Rook(castleRook.getPieceTeam, castleRookDestination, false))
 		builder.setMoveMaker(board.getCurrentPlayer.getOpponent.getTeam)
 		builder.build
 	}
@@ -237,25 +241,6 @@ case class KingSideCastle(private val board: Board,
                           private val castleRookStart: Int,
                           private val castleRookDestination: Int)
 	extends CastleMove(board, destinationCoordinate, movedPiece, castleRook, castleRookStart, castleRookDestination) {
-	//  override def execute: Board = {
-	//    val builder: Builder = new Builder()
-	//
-	//    for (piece <- board.getCurrentPlayer.getActivePieces) {
-	//      if (!movedPiece.equals(piece) && !castleRook.equals(piece)) {
-	//        builder.setPiece(piece)
-	//      }
-	//    }
-	//
-	//    for (piece <- board.getCurrentPlayer.getOpponent.getActivePieces) {
-	//      builder.setPiece(piece)
-	//    }
-	//
-	//    builder.setPiece(movedPiece.movePiece(this))
-	//    builder.setPiece(Rook(castleRook.getPieceTeam, castleRookDestination))
-	//    builder.setMoveMaker(board.getCurrentPlayer.getOpponent.getTeam)
-	//    builder.build
-	//  }
-
 	override def toString: String = "O-O"
 }
 
@@ -266,25 +251,6 @@ case class QueenSideCastle(private val board: Board,
                            private val castleRookStart: Int,
                            private val castleRookDestination: Int)
 	extends CastleMove(board, destinationCoordinate, movedPiece, castleRook, castleRookStart, castleRookDestination) {
-	//  override def execute: Board = {
-	//    val builder: Builder = new Builder()
-	//
-	//    for (piece <- board.getCurrentPlayer.getActivePieces) {
-	//      if (!movedPiece.equals(piece) && !castleRook.equals(piece)) {
-	//        builder.setPiece(piece)
-	//      }
-	//    }
-	//
-	//    for (piece <- board.getCurrentPlayer.getOpponent.getActivePieces) {
-	//      builder.setPiece(piece)
-	//    }
-	//
-	//    builder.setPiece(movedPiece.movePiece(this))
-	//    builder.setPiece(Rook(castleRook.getPieceTeam, castleRookDestination))
-	//    builder.setMoveMaker(board.getCurrentPlayer.getOpponent.getTeam)
-	//    builder.build
-	//  }
-
 	override def toString: String = "O-O-O"
 }
 
@@ -292,7 +258,5 @@ case class InvalidMove()
 	extends Move(null, -1) {
 	override def getCurrentCoordinate: Int = -1
 
-	override def execute: Board = {
-		throw new RuntimeException("Cannot execute an invalid move!")
-	}
+	override def toString: String = "Move is invalid!"
 }

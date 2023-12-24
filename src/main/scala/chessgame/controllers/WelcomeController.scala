@@ -11,7 +11,7 @@ class WelcomeController {
 	}
 
 	def viewStats = {
-		println("view stats")
+		Main.showStats
 	}
 
 	def exitGame = {

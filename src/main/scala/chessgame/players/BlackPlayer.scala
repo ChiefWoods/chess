@@ -5,9 +5,9 @@ import chessgame.board.{Board, KingSideCastle, Move, QueenSideCastle}
 import chessgame.pieces.{Piece, Rook}
 
 class BlackPlayer(private val board: Board, private val blackLegalMoves: Set[Move], private val whiteLegalMoves: Set[Move]) extends Player(board, blackLegalMoves, whiteLegalMoves) {
-	override def getActivePieces: Set[Piece] = board.getBlackPieces
-
 	override def getTeam: Team = BLACK
+
+	override def getActivePieces: Set[Piece] = board.getBlackPieces
 
 	override def getOpponent: Player = board.getWhitePlayer
 

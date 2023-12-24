@@ -18,6 +18,24 @@ case class Board(private val builder: Builder) {
 	private val blackPlayer: BlackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves)
 	private val currentPlayer: Player = builder.nextMoveMaker.choosePlayer(whitePlayer, blackPlayer)
 
+	def getWhitePieces: Set[Piece] = whitePieces
+
+	def getBlackPieces: Set[Piece] = blackPieces
+
+	def getEnPassantPawn: Pawn = enPassantPawn
+
+	def getAllLegalMoves: Set[Move] = whitePlayer.getLegalMoves ++ blackPlayer.getLegalMoves
+
+	def getWhitePlayer: WhitePlayer = whitePlayer
+
+	def getBlackPlayer: BlackPlayer = blackPlayer
+
+	def getCurrentPlayer: Player = currentPlayer
+
+	def getTile(coordinate: Int): Tile = {
+		gameBoard(coordinate)
+	}
+
 	private def calculateActivePieces(gameBoard: List[Tile], team: Team.Team): Set[Piece] = {
 		gameBoard.filter(_.isTileOccupied).map(_.getPiece).filter(_.getPieceTeam == team).toSet
 	}
@@ -31,26 +49,6 @@ case class Board(private val builder: Builder) {
 		}
 
 		legalMoves
-	}
-
-	def getTile(coordinate: Int): Tile = {
-		gameBoard(coordinate)
-	}
-
-	def getWhitePieces: Set[Piece] = whitePieces
-
-	def getBlackPieces: Set[Piece] = blackPieces
-
-	def getEnPassantPawn: Pawn = enPassantPawn
-
-	def getWhitePlayer: WhitePlayer = whitePlayer
-
-	def getBlackPlayer: BlackPlayer = blackPlayer
-
-	def getCurrentPlayer: Player = currentPlayer
-
-	def getAllLegalMoves: Set[Move] = {
-		whiteLegalMoves ++ blackLegalMoves
 	}
 
 	override def toString: String = {
@@ -78,16 +76,12 @@ object Board {
 	val EIGHTH_COLUMN: Array[Boolean] = initColumn(7)
 	val FIRST_ROW: Array[Boolean] = initRow(0)
 	val SECOND_ROW: Array[Boolean] = initRow(1)
-	val THIRD_ROW: Array[Boolean] = initRow(2)
-	val FOURTH_ROW: Array[Boolean] = initRow(3)
-	val FIFTH_ROW: Array[Boolean] = initRow(4)
-	val SIXTH_ROW: Array[Boolean] = initRow(5)
 	val SEVENTH_ROW: Array[Boolean] = initRow(6)
 	val EIGHTH_ROW: Array[Boolean] = initRow(7)
-	val ALGEBRAIC_NOTATION: Array[String] = initializeAlgebraicNotation
-	val POSITION_TO_COORDINATE: mutable.Map[String, Int] = initializePositionToCoordinateMap
+	val ALGEBRAIC_NOTATION: Array[String] = initAlgebraicNotation
+	val POSITION_TO_COORDINATE: mutable.Map[String, Int] = initPositionToCoordinateMap
 
-	def initColumn(columnNumber: Int): Array[Boolean] = {
+	private def initColumn(columnNumber: Int): Array[Boolean] = {
 		val column: Array[Boolean] = new Array[Boolean](TILES_COUNT)
 		var currentNumber = columnNumber
 
@@ -99,7 +93,7 @@ object Board {
 		column
 	}
 
-	def initRow(rowNumber: Int): Array[Boolean] = {
+	private def initRow(rowNumber: Int): Array[Boolean] = {
 		val row: Array[Boolean] = new Array[Boolean](TILES_COUNT)
 
 		var currentNumber = rowNumber * TILES_PER_ROW
@@ -112,11 +106,7 @@ object Board {
 		row
 	}
 
-	def isValidTileCoordinate(coordinate: Int): Boolean = {
-		coordinate >= 0 && coordinate < TILES_COUNT
-	}
-
-	def initializeAlgebraicNotation: Array[String] = {
+	def initAlgebraicNotation: Array[String] = {
 		val algebraicNotation: Array[String] = new Array[String](TILES_COUNT)
 
 		var index = 0
@@ -130,7 +120,7 @@ object Board {
 		algebraicNotation
 	}
 
-	def initializePositionToCoordinateMap: mutable.Map[String, Int] = {
+	def initPositionToCoordinateMap: mutable.Map[String, Int] = {
 		val positionToCoordinate: mutable.Map[String, Int] = mutable.Map()
 
 		for (i <- 0 until TILES_COUNT) {
@@ -146,6 +136,10 @@ object Board {
 
 	def getPositionAtCoordinate(coordinate: Int): String = {
 		ALGEBRAIC_NOTATION(coordinate)
+	}
+
+	def isValidTileCoordinate(coordinate: Int): Boolean = {
+		coordinate >= 0 && coordinate < TILES_COUNT
 	}
 
 	def createGameBoard(builder: Builder): List[Tile] = {
@@ -204,6 +198,10 @@ class Builder() {
 	var nextMoveMaker: Team.Team = WHITE
 	var enPassantPawn: Pawn = null
 
+	def build: Board = {
+		new Board(this)
+	}
+
 	def setPiece(piece: Piece): Builder = {
 		boardConfig += (piece.getPiecePosition -> piece)
 		this
@@ -212,10 +210,6 @@ class Builder() {
 	def setMoveMaker(moveMaker: Team.Team): Builder = {
 		nextMoveMaker = moveMaker
 		this
-	}
-
-	def build: Board = {
-		new Board(this)
 	}
 
 	def setEnPassantPawn(movedPawn: Pawn) = {

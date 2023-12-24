@@ -22,6 +22,10 @@ object Piece extends Enumeration {
 	val PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING = Value
 
 	implicit class PieceTypeOps(pieceType: Value) {
+		def isKing: Boolean = pieceType == KING
+
+		def isRook: Boolean = pieceType == ROOK
+
 		def toChar: String = pieceType match {
 			case PAWN => "P"
 			case KNIGHT => "N"
@@ -30,9 +34,5 @@ object Piece extends Enumeration {
 			case QUEEN => "Q"
 			case KING => "K"
 		}
-
-		def isKing: Boolean = pieceType == KING
-
-		def isRook: Boolean = pieceType == ROOK
 	}
 }

@@ -28,8 +28,8 @@ object Team extends Enumeration {
 		}
 
 		def isPawnPromotionTile(coordinate: Int): Boolean = team match {
-			case WHITE => Board.EIGHTH_ROW(coordinate)
-			case BLACK => Board.FIRST_ROW(coordinate)
+			case WHITE => Board.FIRST_ROW(coordinate)
+			case BLACK => Board.EIGHTH_ROW(coordinate)
 		}
 	}
 }

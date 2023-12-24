@@ -4,8 +4,8 @@ import chessgame.Team
 import chessgame.board._
 import chessgame.pieces.Piece._
 
-case class King(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, KING, piecePosition, isFirstMove) {
-	val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
+case class King(private val team: Team.Team, private val piecePosition: Int, private var isFirstMove: Boolean = true) extends Piece(team, KING, piecePosition, isFirstMove) {
+	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
 
 	override def calculateLegalMoves(board: Board): Set[Move] = {
 		var legalMoves: Set[Move] = Set()
@@ -36,14 +36,14 @@ case class King(private val team: Team.Team, private val piecePosition: Int, pri
 	}
 
 	override def movePiece(move: Move): King = {
-		King(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
+		King(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate, false)
 	}
 
-	def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+	private def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
 		Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7)
 	}
 
-	def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+	private def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
 		Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -7 || candidateOffset == 1 || candidateOffset == 9)
 	}
 

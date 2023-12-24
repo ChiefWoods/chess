@@ -5,7 +5,7 @@ import chessgame.board._
 import chessgame.pieces.Piece._
 
 case class Rook(private val team: Team.Team, private val piecePosition: Int, private val isFirstMove: Boolean = true) extends Piece(team, ROOK, piecePosition, isFirstMove) {
-	val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-8, -1, 1, 8)
+	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-8, -1, 1, 8)
 
 	override def calculateLegalMoves(board: Board): Set[Move] = {
 		var legalMoves: Set[Move] = Set()
@@ -14,8 +14,8 @@ case class Rook(private val team: Team.Team, private val piecePosition: Int, pri
 			var candidateDestinationCoordinate = piecePosition
 
 			while (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
-				if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
-					!isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
+				if (!isFirstColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset) &&
+					!isEighthColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset)) {
 					candidateDestinationCoordinate += currentCandidateOffset
 
 					if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
@@ -43,14 +43,14 @@ case class Rook(private val team: Team.Team, private val piecePosition: Int, pri
 	}
 
 	override def movePiece(move: Move): Rook = {
-		Rook(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
+		Rook(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate, false)
 	}
 
-	def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+	private def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
 		Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -1)
 	}
 
-	def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+	private def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
 		Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == 1)
 	}
 

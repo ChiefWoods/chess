@@ -6,12 +6,22 @@
     -fx-background-color: #593E1A;
 }
 
-/* Welcome */
-
-.welcome .button {
+.welcome .button, .stats .button {
     -fx-background-color: #665e66;
 }
 
-.welcome .button:hover {
+.welcome .button:hover, .stats .button:hover {
     -fx-background-color: #494449;
+}
+
+.major-move {
+    -fx-background-color: #89fc89;
+}
+
+.attack-move {
+    -fx-background-color: #fc8989;
+}
+
+.in-check {
+    -fx-background-color: #ea3434 !important;
 }

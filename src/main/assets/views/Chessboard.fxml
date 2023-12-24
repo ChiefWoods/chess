@@ -10,352 +10,512 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessgame.controllers.ChessboardController">
-   <center>
-      <GridPane style="-fx-border-color: #73391d; -fx-border-width: 15;" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-          <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-          <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-         </children>
-      </GridPane>
-   </center>
-   <left>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="40.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="15.0" top="15.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </left>
-   <right>
-      <GridPane BorderPane.alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="40.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS" />
-         </rowConstraints>
-         <children>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-         </children>
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets bottom="15.0" top="15.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </right>
-   <top>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints prefHeight="40.0" valignment="CENTER" vgrow="ALWAYS" />
-        </rowConstraints>
-         <BorderPane.margin>
-            <Insets left="55.0" right="55.0" />
-         </BorderPane.margin>
-         <children>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="a" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="b" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="c" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="d" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="e" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="f" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="g" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="h" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-         </children>
-      </GridPane>
-   </top>
-   <bottom>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints prefHeight="40.0" valignment="CENTER" vgrow="ALWAYS" />
-         </rowConstraints>
-         <children>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="a" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="b" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="c" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="d" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="e" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="f" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="g" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-            <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="h" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Text>
-         </children>
-         <BorderPane.margin>
-            <Insets left="55.0" right="55.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </bottom>
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessgame.controllers.ChessboardController">
+    <center>
+        <GridPane style="-fx-border-color: #73391d; -fx-border-width: 15;" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="65.0" percentWidth="12.5"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="65.0" percentHeight="12.5" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <children>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="1"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="2"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="3"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="4"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="5"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="6"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="4" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="5" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="6" GridPane.rowIndex="7"/>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onMouseClicked="#handleTileClick" style="-fx-border-color: #cccccc; -fx-border-width: 1.5;"
+                        GridPane.columnIndex="7" GridPane.rowIndex="7"/>
+            </children>
+        </GridPane>
+    </center>
+    <left>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="40.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <children>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="8" GridPane.halignment="CENTER"
+                      GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="7" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="6" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="5" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="4" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="15.0" top="15.0"/>
+            </BorderPane.margin>
+        </GridPane>
+    </left>
+    <right>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="40.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="65.0" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <children>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="8" GridPane.halignment="CENTER"
+                      GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="7" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="6" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="5" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="4" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="1" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+            </children>
+            <padding>
+                <Insets left="5.0" right="5.0"/>
+            </padding>
+            <BorderPane.margin>
+                <Insets bottom="15.0" top="15.0"/>
+            </BorderPane.margin>
+        </GridPane>
+    </right>
+    <top>
+        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="40.0" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <BorderPane.margin>
+                <Insets left="55.0" right="55.0"/>
+            </BorderPane.margin>
+            <children>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="a" GridPane.halignment="CENTER"
+                      GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="b" GridPane.columnIndex="1"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="c" GridPane.columnIndex="2"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="d" GridPane.columnIndex="3"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="e" GridPane.columnIndex="4"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="f" GridPane.columnIndex="5"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="g" GridPane.columnIndex="6"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="h" GridPane.columnIndex="7"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+            </children>
+        </GridPane>
+    </top>
+    <bottom>
+        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="65.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="40.0" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <children>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="a" GridPane.halignment="CENTER"
+                      GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="b" GridPane.columnIndex="1"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="c" GridPane.columnIndex="2"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="d" GridPane.columnIndex="3"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="e" GridPane.columnIndex="4"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="f" GridPane.columnIndex="5"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="g" GridPane.columnIndex="6"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+                <Text fill="#593e1a" strokeType="OUTSIDE" strokeWidth="0.0" text="h" GridPane.columnIndex="7"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="Consolas" size="25.0"/>
+                    </font>
+                </Text>
+            </children>
+            <BorderPane.margin>
+                <Insets left="55.0" right="55.0"/>
+            </BorderPane.margin>
+        </GridPane>
+    </bottom>
 </BorderPane>
