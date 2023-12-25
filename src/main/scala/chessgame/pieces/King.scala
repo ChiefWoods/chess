@@ -1,52 +1,56 @@
 package chessgame.pieces
 
-import chessgame.Team
-import chessgame.Team._
 import chessgame.board._
+import chessgame.moves.{MajorAttackMove, MajorMove, Move}
 import chessgame.pieces.Piece._
+import chessgame.players.Team
 
-class King(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, KING, piecePosition) {
-  val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
+case class King(private val team: Team.Team,
+                private val piecePosition: Int,
+                private var isFirstMove: Boolean = true)
+	extends Piece(team, KING, piecePosition, isFirstMove) {
 
-  override def calculateLegalMoves(board: Board): Set[Move] = {
-    var legalMoves: Set[Move] = Set()
+	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-9, -8, -7, -1, 1, 7, 8, 9)
 
-    for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
-      val candidateDestinationCoordinate = piecePosition + currentCandidateOffset
+	override def calculateLegalMoves(board: Board): Set[Move] = {
+		var legalMoves: Set[Move] = Set()
 
-      if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
-        !isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
-        if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
-          val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
+		for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
+			val candidateDestinationCoordinate = piecePosition + currentCandidateOffset
 
-          if (!candidateDestinationTile.isTileOccupied) {
-            legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
-          } else {
-            val pieceAtDestination: Piece = candidateDestinationTile.getPiece
-            val pieceTeam: Team = pieceAtDestination.getPieceTeam
+			if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
+				!isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
+				if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
+					val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
-            if (team != pieceTeam) {
-              legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
-            }
-          }
-        }
-      }
-    }
+					if (!candidateDestinationTile.isTileOccupied) {
+						legalMoves += MajorMove(board, candidateDestinationCoordinate, this)
+					} else {
+						val pieceAtDestination: Piece = candidateDestinationTile.getPiece
+						val pieceTeam: Team.Team = pieceAtDestination.getPieceTeam
 
-    legalMoves
-  }
+						if (team != pieceTeam) {
+							legalMoves += MajorAttackMove(board, candidateDestinationCoordinate, this, pieceAtDestination)
+						}
+					}
+				}
+			}
+		}
 
-  override def movePiece(move: Move): King = {
-    new King(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
-  }
+		legalMoves
+	}
 
-  def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7)
-  }
+	override def movePiece(move: Move): King = {
+		King(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate, false)
+	}
 
-  def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -7 || candidateOffset == 1 || candidateOffset == 9)
-  }
+	private def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7)
+	}
 
-  override def toString: String = KING.toChar
+	private def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -7 || candidateOffset == 1 || candidateOffset == 9)
+	}
+
+	override def toString: String = KING.toChar
 }

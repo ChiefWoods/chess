@@ -1,0 +1,31 @@
+.light-tile {
+    -fx-background-color: #FFFACD;
+}
+
+.dark-tile {
+    -fx-background-color: #593E1A;
+}
+
+.welcome .button, .stats .button {
+    -fx-background-color: #665e66;
+}
+
+.welcome .button:hover, .stats .button:hover {
+    -fx-background-color: #494449;
+}
+
+.source-tile {
+    -fx-background-color: #e9f687;
+}
+
+.major-move {
+    -fx-background-color: #93ecf1;
+}
+
+.attack-move {
+    -fx-background-color: #f57a7a;
+}
+
+.in-check {
+    -fx-background-color: #ef4242 !important;
+}

@@ -1,59 +1,63 @@
 package chessgame.pieces
 
-import chessgame.Team
-import chessgame.Team._
 import chessgame.board._
+import chessgame.moves.{MajorAttackMove, MajorMove, Move}
 import chessgame.pieces.Piece._
+import chessgame.players.Team
 
-class Rook(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, ROOK, piecePosition) {
-  val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-8, -1, 1, 8)
+case class Rook(private val team: Team.Team,
+                private val piecePosition: Int,
+                private val isFirstMove: Boolean = true)
+	extends Piece(team, ROOK, piecePosition, isFirstMove) {
 
-  override def calculateLegalMoves(board: Board): Set[Move] = {
-    var legalMoves: Set[Move] = Set()
+	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-8, -1, 1, 8)
 
-    for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
-      var candidateDestinationCoordinate = piecePosition
+	override def calculateLegalMoves(board: Board): Set[Move] = {
+		var legalMoves: Set[Move] = Set()
 
-      while (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
-        if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
-          !isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
-          candidateDestinationCoordinate += currentCandidateOffset
+		for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
+			var candidateDestinationCoordinate = piecePosition
 
-          if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
-            val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
+			while (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
+				if (!isFirstColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset) &&
+					!isEighthColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset)) {
+					candidateDestinationCoordinate += currentCandidateOffset
 
-            if (!candidateDestinationTile.isTileOccupied) {
-              legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
-            } else {
-              val pieceAtDestination: Piece = candidateDestinationTile.getPiece
-              val pieceTeam: Team = pieceAtDestination.getPieceTeam
+					if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
+						val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
-              if (team != pieceTeam) {
-                legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
-              }
-              candidateDestinationCoordinate = -1
-            }
-          }
-        } else {
-          candidateDestinationCoordinate = -1
-        }
-      }
-    }
+						if (!candidateDestinationTile.isTileOccupied) {
+							legalMoves += MajorMove(board, candidateDestinationCoordinate, this)
+						} else {
+							val pieceAtDestination: Piece = candidateDestinationTile.getPiece
+							val pieceTeam: Team.Team = pieceAtDestination.getPieceTeam
 
-    legalMoves
-  }
+							if (team != pieceTeam) {
+								legalMoves += MajorAttackMove(board, candidateDestinationCoordinate, this, pieceAtDestination)
+							}
+							candidateDestinationCoordinate = -1
+						}
+					}
+				} else {
+					candidateDestinationCoordinate = -1
+				}
+			}
+		}
 
-  override def movePiece(move: Move): Rook = {
-    new Rook(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
-  }
+		legalMoves
+	}
 
-  def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -1)
-  }
+	override def movePiece(move: Move): Rook = {
+		Rook(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate, false)
+	}
 
-  def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == 1)
-  }
+	private def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -1)
+	}
 
-  override def toString: String = ROOK.toChar
+	private def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == 1)
+	}
+
+	override def toString: String = ROOK.toChar
 }

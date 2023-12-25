@@ -1,67 +1,43 @@
 package chessgame.pieces
 
-import chessgame.Team
-import chessgame.board.{Board, Move}
+import chessgame.board.Board
+import chessgame.moves.Move
+import chessgame.players.Team
 
-abstract class Piece(private val team: Team.Team, private val pieceType: Piece.Piece, private val piecePosition: Int, private val isFirstMove: Boolean = false) {
-  private val cachedHashCode: Int = computeHashCode
+abstract class Piece(private val team: Team.Team,
+                     private val pieceType: Piece.Piece,
+                     private val piecePosition: Int,
+                     private val isFirstMove: Boolean) {
 
-  def getPieceTeam: Team.Team = team
+	def getPieceTeam: Team.Team = team
 
-  def getPieceType: Piece.Piece = pieceType
+	def getPieceType: Piece.Piece = pieceType
 
-  def getPiecePosition: Int = piecePosition
+	def getPiecePosition: Int = piecePosition
 
-  def getIsFirstMove: Boolean = isFirstMove
+	def getIsFirstMove: Boolean = isFirstMove
 
-  def calculateLegalMoves(board: Board): Set[Move]
+	def calculateLegalMoves(board: Board): Set[Move]
 
-  def movePiece(move: Move): Piece
-
-  private def computeHashCode: Int = {
-    var result: Int = pieceType.hashCode
-    val prime = 31
-
-    result = prime * result + team.hashCode
-    result = prime * result + piecePosition
-
-    if (isFirstMove) result = prime * result + 1
-    else result = prime * result + 0
-
-    result
-  }
-
-  def equals(obj: Piece): Boolean = {
-    if (this == obj) return true
-    if (obj == null || !obj.isInstanceOf[Piece]) return false
-
-    val piece: Piece = obj
-
-    team == piece.getPieceTeam &&
-      pieceType == piece.getPieceType &&
-      piecePosition == piece.getPiecePosition &&
-      isFirstMove == piece.getIsFirstMove
-  }
-
-  override def hashCode: Int = cachedHashCode
+	def movePiece(move: Move): Piece
 }
 
 object Piece extends Enumeration {
-  type Piece = Value
-  val PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING = Value
+	type Piece = Value
+	val PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING = Value
 
-  implicit class PieceTypeOps(pieceType: Value) {
-    def toChar: String = pieceType match {
-      case PAWN => "P"
-      case KNIGHT => "N"
-      case BISHOP => "B"
-      case ROOK => "R"
-      case QUEEN => "Q"
-      case KING => "K"
-    }
+	implicit class PieceTypeOps(pieceType: Value) {
+		def isKing: Boolean = pieceType == KING
 
-    def isKing: Boolean = pieceType == KING
+		def isRook: Boolean = pieceType == ROOK
 
-    def isRook: Boolean = pieceType == ROOK
-  }
+		def toChar: String = pieceType match {
+			case PAWN => "P"
+			case KNIGHT => "N"
+			case BISHOP => "B"
+			case ROOK => "R"
+			case QUEEN => "Q"
+			case KING => "K"
+		}
+	}
 }

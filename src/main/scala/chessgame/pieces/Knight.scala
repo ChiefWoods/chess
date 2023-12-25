@@ -1,63 +1,67 @@
 package chessgame.pieces
 
-import chessgame.Team
-import chessgame.Team._
 import chessgame.board._
+import chessgame.moves.{MajorAttackMove, MajorMove, Move}
 import chessgame.pieces.Piece._
+import chessgame.players.Team
 
-class Knight(private val team: Team.Team, private val piecePosition: Int) extends Piece(team, KNIGHT, piecePosition) {
-  val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-17, -15, -10, -6, 6, 10, 15, 17)
+case class Knight(private val team: Team.Team,
+                  private val piecePosition: Int,
+                  private val isFirstMove: Boolean = true)
+	extends Piece(team, KNIGHT, piecePosition, isFirstMove) {
 
-  override def calculateLegalMoves(board: Board): Set[Move] = {
-    var candidateDestinationCoordinate: Int = piecePosition
-    var legalMoves: Set[Move] = Set()
+	private val CANDIDATE_MOVE_COORDINATES: List[Int] = List(-17, -15, -10, -6, 6, 10, 15, 17)
 
-    for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
-      candidateDestinationCoordinate = piecePosition + currentCandidateOffset
+	override def calculateLegalMoves(board: Board): Set[Move] = {
+		var candidateDestinationCoordinate: Int = piecePosition
+		var legalMoves: Set[Move] = Set()
 
-      if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
-        if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
-          !isSecondColumnExclusion(piecePosition, currentCandidateOffset) &&
-          !isSevenColumnExclusion(piecePosition, currentCandidateOffset) &&
-          !isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
-          val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
+		for (currentCandidateOffset <- CANDIDATE_MOVE_COORDINATES) {
+			candidateDestinationCoordinate = piecePosition + currentCandidateOffset
 
-          if (!candidateDestinationTile.isTileOccupied) {
-            legalMoves += new MajorMove(board, this, candidateDestinationCoordinate)
-          } else {
-            val pieceAtDestination: Piece = candidateDestinationTile.getPiece
-            val pieceTeam: Team = pieceAtDestination.getPieceTeam
+			if (Board.isValidTileCoordinate(candidateDestinationCoordinate)) {
+				if (!isFirstColumnExclusion(piecePosition, currentCandidateOffset) &&
+					!isSecondColumnExclusion(piecePosition, currentCandidateOffset) &&
+					!isSevenColumnExclusion(piecePosition, currentCandidateOffset) &&
+					!isEighthColumnExclusion(piecePosition, currentCandidateOffset)) {
+					val candidateDestinationTile: Tile = board.getTile(candidateDestinationCoordinate)
 
-            if (team != pieceTeam) {
-              legalMoves += new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination)
-            }
-          }
-        }
-      }
-    }
+					if (!candidateDestinationTile.isTileOccupied) {
+						legalMoves += MajorMove(board, candidateDestinationCoordinate, this)
+					} else {
+						val pieceAtDestination: Piece = candidateDestinationTile.getPiece
+						val pieceTeam: Team.Team = pieceAtDestination.getPieceTeam
 
-    legalMoves
-  }
+						if (team != pieceTeam) {
+							legalMoves += MajorAttackMove(board, candidateDestinationCoordinate, this, pieceAtDestination)
+						}
+					}
+				}
+			}
+		}
 
-  override def movePiece(move: Move): Knight = {
-    new Knight(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate)
-  }
+		legalMoves
+	}
 
-  def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 || candidateOffset == 6 || candidateOffset == 15)
-  }
+	override def movePiece(move: Move): Knight = {
+		Knight(move.getMovedPiece.getPieceTeam, move.getDestinationCoordinate, false)
+	}
 
-  def isSecondColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.SECOND_COLUMN(currentPosition) && (candidateOffset == -10 || candidateOffset == 6)
-  }
+	private def isFirstColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.FIRST_COLUMN(currentPosition) && (candidateOffset == -17 || candidateOffset == -10 || candidateOffset == 6 || candidateOffset == 15)
+	}
 
-  def isSevenColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.SEVENTH_COLUMN(currentPosition) && (candidateOffset == -6 || candidateOffset == 10)
-  }
+	private def isSecondColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.SECOND_COLUMN(currentPosition) && (candidateOffset == -10 || candidateOffset == 6)
+	}
 
-  def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
-    Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17)
-  }
+	private def isSevenColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.SEVENTH_COLUMN(currentPosition) && (candidateOffset == -6 || candidateOffset == 10)
+	}
 
-  override def toString: String = KNIGHT.toChar
+	private def isEighthColumnExclusion(currentPosition: Int, candidateOffset: Int): Boolean = {
+		Board.EIGHTH_COLUMN(currentPosition) && (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17)
+	}
+
+	override def toString: String = KNIGHT.toChar
 }

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane styleClass="stats" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessgame.controllers.StatsController">
+    <children>
+        <Button alignment="CENTER" layoutX="157.0" layoutY="92.0" mnemonicParsing="false" onAction="#goBack" text="Back" textFill="#f6f1f1" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <font>
+                <Font name="Dubai Regular" size="20.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetStats" text="Reset" textFill="#f6f1f1" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+            <font>
+                <Font name="Dubai Regular" size="20.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </Button>
+        <GridPane layoutX="186.0" layoutY="136.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="50.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Stats" textFill="#665e66">
+                    <font>
+                        <Font name="Dubai Bold" size="40.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <Label text="Pieces Captured" textFill="#665e66" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="10.0" />
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Dubai Bold" size="20.0" />
+                    </font>
+                </Label>
+            <Label text="Pawns Captured" textFill="#665e66" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Knights Captured" textFill="#665e66" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Bishops Captured" textFill="#665e66" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Rooks Captured" textFill="#665e66" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Queens Captured" textFill="#665e66" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Checkmates" textFill="#665e66" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Castles" textFill="#665e66" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Promotions" textFill="#665e66" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="En Passants" textFill="#665e66" GridPane.rowIndex="10">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+                <Text fx:id="piecesCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Dubai Bold" size="20.0" />
+                    </font>
+                </Text>
+            <Text fx:id="pawnsCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="knightsCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="bishopsCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="rooksCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="queensCapturedText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="checkmatesText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="castlesText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="promotionsText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="enPassantsText" fill="#665e66" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <font>
+                  <Font name="Dubai Bold" size="20.0" />
+               </font>
+            </Text>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
