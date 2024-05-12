@@ -18,14 +18,17 @@ Board game for PRG2104 Object-Oriented Programming.
 
 - [![Scala](https://img.shields.io/badge/Scala-%2322525E?style=for-the-badge&logo=scala&logoColor=%23DC3330)](https://www.scala-lang.org/)
 - [![CSS3](https://img.shields.io/badge/CSS3-white?style=for-the-badge&logo=css3&logoColor=306AF1)](https://www.w3.org/Style/CSS/Overview.en.html)
+- [![SQL](https://img.shields.io/badge/SQL-575757?style=for-the-badge&logo=apache&logoColor=D22128)](https://db.apache.org/derby/)
 
+### Database
+
+- [Apache Derby](https://db.apache.org/derby/)
 
 ### Libraries
 
 - [ScalaFX](https://www.scalafx.org/)
 - [ScalaFXML](https://github.com/vigoo/scalafxml)
 - [ScalikeJDBC](http://scalikejdbc.org/)
-- [Apache Derby](https://db.apache.org/derby/)
 
 ### Tools
 
@@ -38,6 +41,7 @@ Board game for PRG2104 Object-Oriented Programming.
 ### Setup
 
 1. Clone the repository
+
 ```
 git clone https://github.com/ChiefWoods/chess.git
 ```
