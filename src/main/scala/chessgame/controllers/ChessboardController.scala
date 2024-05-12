@@ -45,7 +45,7 @@ class ChessboardController {
 				pieceToMove = sourceTile.getPiece
 
 				// When an empty tile or an opponent piece is selected
-				if (pieceToMove == null || (pieceToMove.getPieceTeam != board.getCurrentPlayer.getTeam)) {
+				if (pieceToMove == null || pieceToMove.getPieceTeam != board.getCurrentPlayer.getTeam) {
 					sourceTile = null
 					pieceToMove = null
 					// When a friendly piece is selected
@@ -163,7 +163,7 @@ class ChessboardController {
 	}
 
 	def showCheckmateAlert(winner: String) = {
-		val result = new Alert(Alert.AlertType.Information) {
+		val alert = new Alert(Alert.AlertType.Information) {
 			initOwner(Main.stage)
 			title = "Game Ended"
 			headerText = "Checkmate!"
@@ -173,7 +173,9 @@ class ChessboardController {
 				fitWidth = 50
 				fitHeight = 50
 			}
-		}.showAndWait()
+		}
+
+		val result = alert.showAndWait()
 
 		result match {
 			case Some(_) => Main.showWelcome
@@ -182,7 +184,7 @@ class ChessboardController {
 	}
 
 	def showStalemateAlert = {
-		val result = new Alert(Alert.AlertType.Information) {
+		val alert = new Alert(Alert.AlertType.Information) {
 			initOwner(Main.stage)
 			title = "Game Ended"
 			headerText = "Stalemate!"
@@ -192,7 +194,9 @@ class ChessboardController {
 				fitWidth = 50
 				fitHeight = 50
 			}
-		}.showAndWait()
+		}
+
+		val result = alert.showAndWait()
 
 		result match {
 			case Some(_) => Main.showWelcome

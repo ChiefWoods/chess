@@ -17,12 +17,12 @@ class RootLayoutController {
 	}
 
 	def quitGame(): Unit = {
-		val alert = new Alert(AlertType.Confirmation) {
+		val result = new Alert(AlertType.Confirmation) {
 			title = "Quit Game"
 			headerText = "Are you sure you want to draw the game?"
 			buttonTypes = Seq(ButtonType.Yes, ButtonType.No)
-		}
-		val result = alert.showAndWait()
+		}.showAndWait()
+
 		result match {
 			case Some(ButtonType.Yes) =>
 				Main.showWelcome

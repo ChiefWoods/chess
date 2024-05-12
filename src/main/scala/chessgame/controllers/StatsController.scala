@@ -25,13 +25,13 @@ class StatsController(private val piecesCapturedText: Text,
 	}
 
 	def resetStats = {
-		val alert = new Alert(AlertType.Confirmation) {
+		val result = new Alert(AlertType.Confirmation) {
 			title = "Reset Stats"
 			headerText = "Are you sure you want to reset your stats?"
 			contentText = "This action cannot be undone."
 			buttonTypes = Seq(ButtonType.OK, ButtonType.Cancel)
-		}
-		val result = alert.showAndWait()
+		}.showAndWait()
+
 		result match {
 			case Some(ButtonType.OK) =>
 				Stats.resetStats
@@ -42,6 +42,7 @@ class StatsController(private val piecesCapturedText: Text,
 
 	def showStatsTable = {
 		val stats = Stats.getStats
+
 		if (stats != null) {
 			piecesCapturedText.text = stats.piecesCapturedInt.toString
 			pawnsCapturedText.text = stats.pawnsCapturedInt.toString

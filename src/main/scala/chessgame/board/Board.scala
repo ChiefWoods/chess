@@ -32,9 +32,7 @@ case class Board(private val builder: Builder) {
 
 	def getCurrentPlayer: Player = currentPlayer
 
-	def getTile(coordinate: Int): Tile = {
-		gameBoard(coordinate)
-	}
+	def getTile(coordinate: Int): Tile = gameBoard(coordinate)
 
 	private def calculateActivePieces(gameBoard: List[Tile], team: Team.Team): Set[Piece] = {
 		gameBoard.filter(_.isTileOccupied).map(_.getPiece).filter(_.getPieceTeam == team).toSet
@@ -178,7 +176,7 @@ object Board {
 	}
 }
 
-class Builder() {
+class Builder {
 	private var boardConfig: mutable.Map[Int, Piece] = mutable.Map()
 	private var nextMoveMaker: Team.Team = WHITE
 	private var enPassantPawn: Pawn = null
@@ -194,16 +192,12 @@ class Builder() {
 		this
 	}
 
-	def setEnPassantPawn(movedPawn: Pawn) = {
-		enPassantPawn = movedPawn
-	}
+	def setEnPassantPawn(movedPawn: Pawn) = enPassantPawn = movedPawn
 
 	def setPiece(piece: Piece): Builder = {
 		boardConfig += (piece.getPiecePosition -> piece)
 		this
 	}
 
-	def build: Board = {
-		new Board(this)
-	}
+	def build: Board = new Board(this)
 }

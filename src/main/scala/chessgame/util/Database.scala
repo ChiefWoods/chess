@@ -8,9 +8,7 @@ trait Database {
 	val dbURL = "jdbc:derby:chessDB;create=true;"
 
 	Class.forName(derbyDriverClassname)
-
 	ConnectionPool.singleton(dbURL, "root", "AnatolyKarpov")
-
 	implicit val session = AutoSession
 }
 
