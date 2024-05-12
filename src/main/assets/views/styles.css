@@ -1,17 +1,17 @@
+.btn {
+    -fx-background-color: #665e66;
+}
+
+.btn:hover {
+    -fx-background-color: #494449;
+}
+
 .light-tile {
     -fx-background-color: #FFFACD;
 }
 
 .dark-tile {
     -fx-background-color: #593E1A;
-}
-
-.welcome .button, .stats .button {
-    -fx-background-color: #665e66;
-}
-
-.welcome .button:hover, .stats .button:hover {
-    -fx-background-color: #494449;
 }
 
 .source-tile {
