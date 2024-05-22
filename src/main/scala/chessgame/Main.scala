@@ -70,8 +70,8 @@ object Main extends JFXApp {
 						val pieceTeam = board.getTile(tileId).getPiece.getPieceTeam
 						val pieceType = board.getTile(tileId).getPiece.getPieceType
 						setImage(new jfxs.image.Image(
-							getClass.getResourceAsStream(s"/images/pieces/$pieceTeam/$pieceType.png"))
-						)
+							getClass.getResourceAsStream(s"/images/pieces/$pieceTeam/$pieceType.png".toLowerCase)
+						))
 					}
 				})
 			}

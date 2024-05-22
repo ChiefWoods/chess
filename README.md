@@ -40,12 +40,34 @@ Board game for PRG2104 Object-Oriented Programming.
 
 ## Getting Started
 
+### Prerequisites
+
+[JDK 1.8](https://www.oracle.com/my/java/technologies/javase/javase8-archive-downloads.html) or later and [sbt](https://www.scala-sbt.org/) is required to run the application.
+
 ### Setup
 
 1. Clone the repository
 
 ```
 git clone https://github.com/ChiefWoods/chess.git
+```
+
+2. Start sbt shell
+
+```
+sbt
+```
+
+3. Compile the project
+
+```
+sbt:chess> compile
+```
+
+4. Run the application
+
+```
+sbt:chess> run
 ```
 
 ## Issues

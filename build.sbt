@@ -14,4 +14,8 @@ lazy val root = (project in file("."))
 			"ch.qos.logback" % "logback-classic" % "1.3.14"
 		)
 	)
+
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
+
+Compile / scalaSource := baseDirectory.value / "src" / "main" / "scala"
+Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "assets"
