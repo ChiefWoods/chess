@@ -29,6 +29,8 @@ Board game for PRG2104 Object-Oriented Programming.
 - [ScalaFX](https://www.scalafx.org/)
 - [ScalaFXML](https://github.com/vigoo/scalafxml)
 - [ScalikeJDBC](http://scalikejdbc.org/)
+- [H2 Database](https://www.h2database.com/)
+- [Logback](https://logback.qos.ch/)
 
 ### Tools
 

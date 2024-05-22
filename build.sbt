@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
 			"org.apache.derby" % "derby" % "10.12.1.1",
 			"org.scalikejdbc" %% "scalikejdbc" % "4.1.0",
 			"com.h2database" % "h2" % "1.4.200",
-			"ch.qos.logback" % "logback-classic" % "1.2.12"
+			"ch.qos.logback" % "logback-classic" % "1.3.14"
 		)
 	)
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
